@@ -396,8 +396,8 @@ The following environment variables can be set before building:
 # No required environment variables for static export
 # All processing happens client-side
 
-# Optional: For subpath deployment (e.g. /pdftara)
-BASE_PATH=/pdftara
+# Optional: For subpath deployment (e.g. /PDFTara)
+BASE_PATH=/PDFTara
 
 # Optional: For analytics or custom features
 NEXT_PUBLIC_SITE_URL=https://your-domain.com
@@ -408,25 +408,25 @@ NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 
 ## 🌐 Subpath Deployment
 
-PDFTara supports deployment under a subpath (e.g., `https://your-domain.com/pdftara/`). This is useful for hosting the app as a part of a larger website.
+PDFTara supports deployment under a subpath (e.g., `https://your-domain.com/PDFTara/`). This is useful for hosting the app as a part of a larger website.
 
 ### Configuration
 
 The subpath must be specified at **build time** because Next.js needs to bake the paths into the static HTML.
 
-1.  **Environment Variable**: Set `BASE_PATH` (or `NEXT_PUBLIC_BASE_PATH`) to your desired subpath (e.g., `/pdftara`).
+1.  **Environment Variable**: Set `BASE_PATH` (or `NEXT_PUBLIC_BASE_PATH`) to your desired subpath (e.g., `/PDFTara`).
 2.  **Build**: Run `npm run build` with the variable set.
 
 ### Examples
 
 #### Command Line
 ```bash
-BASE_PATH=/pdftara npm run build
+BASE_PATH=/PDFTara npm run build
 ```
 
 #### Docker
 ```bash
-docker build --build-arg BASE_PATH=/pdftara -t pdftara .
+docker build --build-arg BASE_PATH=/PDFTara -t PDFTara .
 ```
 
 #### GitHub Actions
@@ -435,7 +435,7 @@ Update your workflow to include the environment variable in the build step:
 - name: Build with Next.js
   run: npx next build
   env:
-    BASE_PATH: /pdftara
+    BASE_PATH: /PDFTara
 ```
 
 ---
@@ -540,7 +540,7 @@ The raw WASM binary (`soffice.wasm`, ~147MB) exceeds GitHub's 100MB file size li
 |---|---|---|
 | Development (`npm run dev`) | `predev` → `scripts/decompress-wasm-dev.mjs` | `public/libreoffice-wasm/` |
 | Production Build (`npm run build`) | `postbuild` → `scripts/decompress-wasm.mjs` | `out/libreoffice-wasm/` |
-| Docker Build | Dockerfile `RUN gunzip -k` | `/website/pdftara/libreoffice-wasm/` |
+| Docker Build | Dockerfile `RUN gunzip -k` | `/website/PDFTara/libreoffice-wasm/` |
 
 ### How Each Platform Serves These Files
 

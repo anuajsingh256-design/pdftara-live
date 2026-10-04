@@ -18,8 +18,8 @@ export interface TourStep {
   highlightPadding?: number;
 }
 
-const TOUR_COMPLETED_KEY = 'pdftara_tour_completed';
-const TOUR_DISMISSED_KEY = 'pdftara_tour_dismissed';
+const TOUR_COMPLETED_KEY = 'PDFTara_tour_completed';
+const TOUR_DISMISSED_KEY = 'PDFTara_tour_dismissed';
 
 /**
  * Check if localStorage is available

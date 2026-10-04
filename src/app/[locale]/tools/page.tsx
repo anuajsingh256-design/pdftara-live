@@ -18,24 +18,10 @@ export async function generateMetadata({
   const validLocale = locales.includes(locale as Locale) ? (locale as Locale) : 'en';
   const t = await getTranslations({ locale: validLocale, namespace: 'metadata' });
 
-  // Base metadata generate karo
-  const metadata = await generateToolsListMetadata(validLocale, {
+  return generateToolsListMetadata(validLocale, {
     title: t('tools.title'),
     description: t('tools.description'),
   });
-
-  // ✅ MASTER SEO FIX: Is specific page ke liye Canonical aur Alternates pakke karo
-  return {
-    ...metadata,
-    alternates: {
-      // Is page ka asli URL (Slash ke saath)
-      canonical: `https://www.pdftara.com/${validLocale}/tools/`,
-      // Saari languages ke liye alternate links (Hreflang - Sab slash ke saath)
-      languages: Object.fromEntries(
-        locales.map((l) => [l, `https://www.pdftara.com/${l}/tools/`])
-      ),
-    },
-  };
 }
 
 interface ToolsPageProps {
@@ -73,6 +59,8 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
     return acc;
   }, {} as Record<string, { title: string; description: string }>);
 
+  // Note: searchParams are handled client-side in ToolsPageClient
+  // because static export doesn't support server-side searchParams
   return (
     <Suspense fallback={<ToolsPageFallback />}>
       <ToolsPageClient locale={locale as Locale} localizedToolContent={localizedToolContent} />

@@ -88,9 +88,9 @@ async function init(needsCJKFont = false) {
     self.postMessage({ type: 'status', message: 'Installing dependencies...' });
 
     const basePath = '/pymupdf-wasm/';
-    await pyodide.loadPackage(basePath + 'numpy-2.2.5-cp313-cp313-pyodide_2025_0_wasm32.whl');
-    await pyodide.loadPackage(basePath + 'lxml-5.4.0-cp313-cp313-pyodide_2025_0_wasm32.whl');
-    await pyodide.loadPackage(basePath + 'pymupdf-1.26.3-cp313-none-pyodide_2025_0_wasm32.whl');
+    await pyodide.loadPackage(basePath + 'numpy-2.2.5-cp313-cp313-pyodide_2026_0_wasm32.whl');
+    await pyodide.loadPackage(basePath + 'lxml-5.4.0-cp313-cp313-pyodide_2026_0_wasm32.whl');
+    await pyodide.loadPackage(basePath + 'pymupdf-1.26.3-cp313-none-pyodide_2026_0_wasm32.whl');
 
     if (needsCJKFont) {
         await loadCJKFont();

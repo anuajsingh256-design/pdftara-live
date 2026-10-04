@@ -30,7 +30,7 @@ async function init() {
     // Install dependencies
     // We only need pymupdf for extraction, but might need basic types
     // Using the same set as other workers ensures compatibility and cached loading
-    await install(basePath + 'pymupdf-1.26.3-cp313-none-pyodide_2025_0_wasm32.whl');
+    await install(basePath + 'pymupdf-1.26.3-cp313-none-pyodide_2026_0_wasm32.whl');
 
     self.postMessage({ type: 'status', message: 'Initializing extractor...' });
 

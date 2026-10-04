@@ -28,8 +28,8 @@ async function init() {
     const basePath = '/pymupdf-wasm/';
 
     // Install PyMuPDF
-    await install(basePath + 'numpy-2.2.5-cp313-cp313-pyodide_2025_0_wasm32.whl');
-    await install(basePath + 'pymupdf-1.26.3-cp313-none-pyodide_2025_0_wasm32.whl');
+    await install(basePath + 'numpy-2.2.5-cp313-cp313-pyodide_2026_0_wasm32.whl');
+    await install(basePath + 'pymupdf-1.26.3-cp313-none-pyodide_2026_0_wasm32.whl');
 
     self.postMessage({ type: 'status', message: 'Initializing converter script...' });
 

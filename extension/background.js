@@ -1,41 +1,41 @@
 // PDFTara Chrome Extension - Background Service Worker
 
-const PDFTARA_URL = 'https://pdftara.devtoolcafe.com/en';
+const PDFTara_URL = 'https://PDFTara.devtoolcafe.com/en';
 
 // Create context menu when extension is installed
 chrome.runtime.onInstalled.addListener(() => {
     // Create main context menu item
     chrome.contextMenus.create({
-        id: 'pdftara-open',
+        id: 'PDFTara-open',
         title: 'Open with PDFTara',
         contexts: ['link', 'page']
     });
 
     // Create submenu for specific tools
     chrome.contextMenus.create({
-        id: 'pdftara-merge',
-        parentId: 'pdftara-open',
+        id: 'PDFTara-merge',
+        parentId: 'PDFTara-open',
         title: 'Merge PDFs',
         contexts: ['link', 'page']
     });
 
     chrome.contextMenus.create({
-        id: 'pdftara-compress',
-        parentId: 'pdftara-open',
+        id: 'PDFTara-compress',
+        parentId: 'PDFTara-open',
         title: 'Compress PDF',
         contexts: ['link', 'page']
     });
 
     chrome.contextMenus.create({
-        id: 'pdftara-convert',
-        parentId: 'pdftara-open',
+        id: 'PDFTara-convert',
+        parentId: 'PDFTara-open',
         title: 'Convert to PDF',
         contexts: ['link', 'page']
     });
 
     chrome.contextMenus.create({
-        id: 'pdftara-all-tools',
-        parentId: 'pdftara-open',
+        id: 'PDFTara-all-tools',
+        parentId: 'PDFTara-open',
         title: 'All Tools →',
         contexts: ['link', 'page']
     });
@@ -45,24 +45,24 @@ chrome.runtime.onInstalled.addListener(() => {
 
 // Handle context menu clicks
 chrome.contextMenus.onClicked.addListener((info, tab) => {
-    let url = PDFTARA_URL;
+    let url = PDFTara_URL;
 
     switch (info.menuItemId) {
-        case 'pdftara-merge':
-            url = `${PDFTARA_URL}/tools/merge-pdf`;
+        case 'PDFTara-merge':
+            url = `${PDFTara_URL}/tools/merge-pdf`;
             break;
-        case 'pdftara-compress':
-            url = `${PDFTARA_URL}/tools/compress-pdf`;
+        case 'PDFTara-compress':
+            url = `${PDFTara_URL}/tools/compress-pdf`;
             break;
-        case 'pdftara-convert':
-            url = `${PDFTARA_URL}/tools/jpg-to-pdf`;
+        case 'PDFTara-convert':
+            url = `${PDFTara_URL}/tools/jpg-to-pdf`;
             break;
-        case 'pdftara-all-tools':
-        case 'pdftara-open':
-            url = PDFTARA_URL;
+        case 'PDFTara-all-tools':
+        case 'PDFTara-open':
+            url = PDFTara_URL;
             break;
         default:
-            url = PDFTARA_URL;
+            url = PDFTara_URL;
     }
 
     // Open PDFTara in a new tab

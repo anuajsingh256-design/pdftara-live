@@ -48,8 +48,8 @@ This extension:
 
 ## Links
 
-- Website: [pdftara.devtoolcafe.com](https://pdftara.devtoolcafe.com)
-- GitHub: [github.com/PDFTaraTool/pdftara](https://github.com/PDFTaraTool/pdftara)
+- Website: [PDFTara.devtoolcafe.com](https://PDFTara.devtoolcafe.com)
+- GitHub: [github.com/PDFTaraTool/PDFTara](https://github.com/PDFTaraTool/PDFTara)
 
 ## License
 

@@ -14,7 +14,7 @@ export interface RecentFile {
   toolName?: string;
 }
 
-const STORAGE_KEY = 'pdftara_recent_files';
+const STORAGE_KEY = 'PDFTara_recent_files';
 const MAX_RECENT_FILES = 10;
 
 /**

@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import '@/app/globals.css';
 import { GoogleScripts } from '@/components/GoogleScripts';
 
-// 🚀 PDFTARA MASTER METADATA - ALL URLS END WITH '/'
+// 🚀 PDFTARA MASTER METADATA
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.pdftara.com/'),
 
@@ -22,9 +22,8 @@ export const metadata: Metadata = {
   creator: 'PDFTara.com',
   publisher: 'PDFTara.com',
 
-  // ✅ KING FIX: Har language page ke end mein '/' lagaya hai
+  // ✅ Sirf wahi languages jinki messages/*.json file maujood hai
   alternates: {
-    canonical: 'https://www.pdftara.com/', // Main Canonical
     languages: {
       'en': 'https://www.pdftara.com/en/',
       'es': 'https://www.pdftara.com/es/',
@@ -32,16 +31,15 @@ export const metadata: Metadata = {
       'de': 'https://www.pdftara.com/de/',
       'it': 'https://www.pdftara.com/it/',
       'pt': 'https://www.pdftara.com/pt/',
-      'ru': 'https://www.pdftara.com/ru/',
-      'hi': 'https://www.pdftara.com/hi/',
+      'pl': 'https://www.pdftara.com/pl/',
       'ja': 'https://www.pdftara.com/ja/',
       'ko': 'https://www.pdftara.com/ko/',
       'zh': 'https://www.pdftara.com/zh/',
+      'zh-TW': 'https://www.pdftara.com/zh-TW/',
       'ar': 'https://www.pdftara.com/ar/',
       'vi': 'https://www.pdftara.com/vi/',
       'id': 'https://www.pdftara.com/id/',
       'ro': 'https://www.pdftara.com/ro/',
-      'zh-TW': 'https://www.pdftara.com/zh-TW/',
     },
   },
 
@@ -63,7 +61,6 @@ export const metadata: Metadata = {
     title: 'PDFTara - Free & Private PDF Tools',
     description: 'Merge and edit PDFs securely in your browser. No uploads, maximum security.',
     images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
-    url: 'https://www.pdftara.com/',
   },
 
   icons: {
@@ -85,24 +82,6 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
-        {/* 🚀 WASM OPTIMIZATION 1: LibreOffice Preload */}
-        <link 
-          rel="preload" 
-          href="/libreoffice-wasm/soffice.wasm.gz" 
-          as="fetch" 
-          type="application/wasm" 
-          crossOrigin="anonymous" 
-        />
-
-        {/* 🚀 WASM OPTIMIZATION 2: PyMuPDF Preload */}
-        <link 
-          rel="preload" 
-          href="/pymupdf-wasm/pymupdf.wasm" 
-          as="fetch" 
-          type="application/wasm" 
-          crossOrigin="anonymous" 
-        />
-
         {/* 🚀 COI Service Worker: Multithreading support */}
         <Script src="/coi-serviceworker.js" strategy="beforeInteractive" />
 

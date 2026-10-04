@@ -23,17 +23,17 @@ async function init() {
 
     // Install dependencies in order
     await install('six-1.17.0-py2.py3-none-any.whl');
-    await install('pytz-2025.1-py2.py3-none-any.whl');
+    await install('pytz-2026.1-py2.py3-none-any.whl');
     await install('python_dateutil-2.9.0.post0-py2.py3-none-any.whl');
-    await install('numpy-2.2.5-cp313-cp313-pyodide_2025_0_wasm32.whl');
+    await install('numpy-2.2.5-cp313-cp313-pyodide_2026_0_wasm32.whl');
 
     self.postMessage({ type: 'status', message: 'Installing Pandas...' });
-    await install('pandas-2.2.3-cp313-cp313-pyodide_2025_0_wasm32.whl');
+    await install('pandas-2.2.3-cp313-cp313-pyodide_2026_0_wasm32.whl');
 
     await install('et_xmlfile-2.0.0-py3-none-any.whl');
     await install('openpyxl-3.1.5-py2.py3-none-any.whl');
 
-    await install('pymupdf-1.26.3-cp313-none-pyodide_2025_0_wasm32.whl');
+    await install('pymupdf-1.26.3-cp313-none-pyodide_2026_0_wasm32.whl');
 
     // Define the python processing script
     self.postMessage({ type: 'status', message: 'Initializing converter script...' });

@@ -46,7 +46,7 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
     {
       name: "Capterra",
       url: "https://www.capterra.in/software/1106945/PDFTara",
-      logo: "/images/captara1.png",
+      logo: "/images/captara.png",
       alt: "PDFTara Capterra Reviews - Trusted PDF Tools"
     },
     {

@@ -7,7 +7,7 @@ import type { WorkflowExecutionRecord, WorkflowHistoryStorage } from '@/types/wo
 import type { WorkflowNode, WorkflowEdge } from '@/types/workflow';
 import { logger } from '@/lib/utils/logger';
 
-const STORAGE_KEY = 'pdftara_workflow_history';
+const STORAGE_KEY = 'PDFTara_workflow_history';
 const MAX_RECORDS = 50; // Keep last 50 executions
 
 /**

@@ -25,6 +25,71 @@ export const viewport: Viewport = {
   ],
 };
 
+// ✅ Sirf wahi languages jinki messages/*.json file maujood hai
+// Title 60 character se kam, description lagbhag 120-155 character
+const seoData: Record<string, { title: string; desc: string }> = {
+  en: {
+    title: 'PDFTara - Free & Private PDF Tools Online',
+    desc: 'Merge, split, compress and convert PDFs free in your browser. Files never leave your device, so your documents stay 100% private.',
+  },
+  es: {
+    title: 'PDFTara - Herramientas PDF Gratis y Privadas',
+    desc: 'Une, divide, comprime y convierte PDF gratis en tu navegador. Tus archivos nunca salen de tu dispositivo y siempre se mantienen privados.',
+  },
+  fr: {
+    title: 'PDFTara - Outils PDF Gratuits et Privés',
+    desc: 'Fusionnez, divisez, compressez et convertissez vos PDF gratuitement dans le navigateur. Vos fichiers ne quittent jamais votre appareil.',
+  },
+  de: {
+    title: 'PDFTara - Kostenlose und private PDF-Tools',
+    desc: 'PDFs kostenlos im Browser zusammenführen, teilen, komprimieren und konvertieren. Ihre Dateien verlassen nie Ihr Gerät – 100 % privat.',
+  },
+  it: {
+    title: 'PDFTara - Strumenti PDF Gratuiti e Privati',
+    desc: 'Unisci, dividi, comprimi e converti PDF gratis nel browser. I tuoi file non lasciano mai il dispositivo e restano sempre privati.',
+  },
+  pt: {
+    title: 'PDFTara - Ferramentas PDF Grátis e Privadas',
+    desc: 'Una, divida, comprima e converta PDFs de graça no navegador. Seus arquivos nunca saem do seu dispositivo e ficam 100% privados.',
+  },
+  pl: {
+    title: 'PDFTara - Darmowe i prywatne narzędzia PDF',
+    desc: 'Łącz, dziel, kompresuj i konwertuj pliki PDF za darmo w przeglądarce. Twoje pliki nigdy nie opuszczają urządzenia i pozostają prywatne.',
+  },
+  ro: {
+    title: 'PDFTara - Instrumente PDF Gratuite și Private',
+    desc: 'Îmbină, împarte, comprimă și convertește PDF-uri gratuit în browser. Fișierele tale nu părăsesc niciodată dispozitivul și rămân private.',
+  },
+  vi: {
+    title: 'PDFTara - Công cụ PDF miễn phí và riêng tư',
+    desc: 'Ghép, tách, nén và chuyển đổi PDF miễn phí ngay trên trình duyệt. Tệp của bạn không rời khỏi thiết bị, luôn riêng tư 100%.',
+  },
+  id: {
+    title: 'PDFTara - Alat PDF Gratis dan Privat',
+    desc: 'Gabungkan, pisahkan, kompres, dan konversi PDF gratis di browser. File Anda tidak pernah meninggalkan perangkat dan tetap 100% privat.',
+  },
+  ja: {
+    title: 'PDFTara - 無料でプライベートなPDFツール',
+    desc: 'ブラウザでPDFの結合・分割・圧縮・変換が無料で可能。ファイルは端末から外に出ないので、安全でプライバシーも守られます。',
+  },
+  ko: {
+    title: 'PDFTara - 무료 개인정보 보호 PDF 도구',
+    desc: '브라우저에서 PDF를 무료로 병합, 분할, 압축, 변환하세요. 파일이 기기 밖으로 나가지 않아 100% 안전합니다.',
+  },
+  zh: {
+    title: 'PDFTara - 免费私密的 PDF 在线工具',
+    desc: '在浏览器中免费合并、拆分、压缩和转换 PDF。文件不会离开您的设备,完全保护隐私。',
+  },
+  'zh-TW': {
+    title: 'PDFTara - 免費私密的 PDF 線上工具',
+    desc: '在瀏覽器中免費合併、拆分、壓縮和轉換 PDF。檔案不會離開您的裝置,完全保護隱私。',
+  },
+  ar: {
+    title: 'PDFTara - أدوات PDF مجانية وخاصة',
+    desc: 'ادمج وقسّم وضغط وحوّل ملفات PDF مجانًا في متصفحك. ملفاتك لا تغادر جهازك أبدًا وتبقى خاصة بالكامل.',
+  },
+};
+
 export async function generateMetadata({
   params,
 }: {
@@ -34,62 +99,53 @@ export async function generateMetadata({
   const validLocale = locales.includes(locale as Locale) ? (locale as Locale) : 'en';
   const metadata = await generateHomeMetadata(validLocale);
 
-  const seoData: Record<string, { title: string; desc: string }> = {
-    en: { title: "PDFTara - Free Private PDF Tools", desc: "Merge, split and compress PDFs securely in your browser." },
-    hi: { title: "PDFTara - फ्री प्राइवेट PDF टूल्स", desc: "ब्राउज़र में सुरक्षित रूप से PDF मर्ज और कंप्रेस करें।" },
-    ja: { title: "PDFTara - 無料のプライベートPDFツール", desc: "ブラウザでPDFを安全に結合、分割、圧縮します।" },
-    ko: { title: "PDFTara - 무료 개인용 PDF 도구", desc: "브라우저에서 안전하게 PDF를 병합, 분할 및 압축하세요." },
-    es: { title: "PDFTara - Herramientas PDF gratuitas", desc: "Combine y comprima PDF de forma segura en su navegador." },
-    fr: { title: "PDFTara - Outils PDF gratuits et privés", desc: "Fusionnez et compressez des PDF en toute segurança." },
-    de: { title: "PDFTara - Kostenlose PDF-Tools", desc: "PDFs sicher im Browser zusammenführen und komprimieren." },
-    zh: { title: "PDFTara - 免费私密 PDF 工具", desc: "在浏览器中安全地合并、拆分 और壓縮 PDF।" },
-    pt: { title: "PDFTara - Ferramentas PDF Gratuitas", desc: "Mescle e comprimi PDFs com segurança no seu navegador." },
-    ar: { title: "PDFTara - أدوات PDF مجانية", desc: "دمج وضغط ملفات PDF بأمان في متصفحك." },
-    it: { title: "PDFTara - Strumenti PDF gratuiti", desc: "Unisci e comprimi PDF in modo sicuro nel tuo browser." },
-    ro: { title: "PDFTara - Instrumente PDF gratuite", desc: "Combinați și comprimați PDF-urile în siguranță." },
-    vi: { title: "PDFTara - Công cụ PDF miễn phí", desc: "Ghép và nén PDF an toàn ngay trên trình duyệt." },
-    "zh-TW": { title: "PDFTara - 免費私密 PDF 工具", desc: "在瀏覽器中安全地合併、拆分และ壓縮 PDF।" }
-  };
-
   const currentSeo = seoData[validLocale] || seoData['en'];
+
+  // hreflang: sirf seoData wali languages + x-default
+  const languages: Record<string, string> = Object.keys(seoData).reduce(
+    (acc, l) => {
+      acc[l] = `https://www.pdftara.com/${l}/`;
+      return acc;
+    },
+    {} as Record<string, string>
+  );
+  languages['x-default'] = 'https://www.pdftara.com/en/';
 
   return {
     ...metadata,
     metadataBase: new URL('https://www.pdftara.com/'),
-    title: { default: currentSeo.title, template: `%s` }, 
+    title: { default: currentSeo.title, template: `%s` },
     description: currentSeo.desc,
     alternates: {
-      // ✅ FIX: Layout mein sirf locale base canonical rakho. 
-      // Individual tool pages apne 'page.tsx' mein apna full canonical URL override karenge.
+      // Individual tool/blog pages apne page.tsx me apna full canonical override karenge
       canonical: `https://www.pdftara.com/${validLocale}/`,
-      languages: locales.reduce((acc, l) => { 
-        acc[l] = `https://www.pdftara.com/${l}/`; 
-        return acc; 
-      }, {} as Record<string, string>),
+      languages,
     },
     verification: {
-      google: 'ca-pub-4129411618696895',
       other: {
-        'msvalidate.01': 'BING_VERIFICATION_CODE', 
         'naver-site-verification': 'a7f730f5caea31ec4ce5bcb4ebc46ea1a51d1f5a',
       },
     },
-    robots: { 
-      index: true, 
+    robots: {
+      index: true,
       follow: true,
       googleBot: {
         index: true,
         follow: true,
-      }
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+        'max-video-preview': -1,
+      },
     },
     openGraph: {
       ...metadata.openGraph,
+      type: 'website',
       title: currentSeo.title,
       description: currentSeo.desc,
       url: `https://www.pdftara.com/${validLocale}/`,
       siteName: 'PDFTara',
-      images: [{ url: '/og-image-home.jpg', width: 1200, height: 630 }]
-    }
+      images: [{ url: '/og-image-home.jpg', width: 1200, height: 630 }],
+    },
   };
 }
 
@@ -143,10 +199,8 @@ export default async function LocaleLayout({
           crossOrigin="anonymous"
         ></script>
 
-        {/* SEO Verifications */}
-        <meta name="naver-site-verification" content="a7f730f5caea31ec4ce5bcb4ebc46ea1a51d1f5a" />
+        {/* AdSense verification */}
         <meta name="google-adsense-account" content="ca-pub-4129411618696895" />
-        <meta name="msvalidate.01" content="BING_VERIFICATION_CODE" />
         
         <script
           type="application/ld+json"

@@ -129,7 +129,7 @@ const fontCache: Map<string, ArrayBuffer> = new Map();
 /**
  * IndexedDB font cache
  */
-const DB_NAME = 'pdftara-fonts';
+const DB_NAME = 'PDFTara-fonts';
 const DB_VERSION = 1;
 const STORE_NAME = 'fonts';
 

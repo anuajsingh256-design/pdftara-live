@@ -12,7 +12,7 @@ export interface LanguageSelectorProps {
 }
 
 // Storage key for language preference
-const LANGUAGE_PREFERENCE_KEY = 'pdftara-language-preference';
+const LANGUAGE_PREFERENCE_KEY = 'PDFTara-language-preference';
 
 /**
  * Save language preference to localStorage
@@ -108,15 +108,8 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ currentLocal
     // Save preference to localStorage
     saveLanguagePreference(locale);
     
-    // 🚀 RAM-BAN FIX: Ensure the new path ALWAYS ends with a trailing slash
-    // This prevents "Page with redirect" errors in Google Search Console.
-    let newPath = getLocalizedPath(pathname, locale);
-    
-    // Agar path ke end mein slash nahi hai, to add kar do
-    if (!newPath.endsWith('/')) {
-      newPath = `${newPath}/`;
-    }
-    
+    // Navigate to the new locale path
+    const newPath = getLocalizedPath(pathname, locale);
     router.push(newPath);
     
     setIsOpen(false);

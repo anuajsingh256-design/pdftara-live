@@ -8,6 +8,9 @@ on:
     - cron: "0 0 * * *"
   workflow_dispatch:
 
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: "true"
+
 jobs:
   sync_with_upstream:
     name: Sync with Upstream
@@ -24,7 +27,7 @@ jobs:
         uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
         with:
           target_repo_token: ${{ secrets.GITHUB_TOKEN }}
-          upstream_sync_repo: PDFTaraTool/pdftara
+          upstream_sync_repo: PDFTaraTool/PDFTara
           upstream_sync_branch: main
           target_sync_branch: main
           test_mode: false

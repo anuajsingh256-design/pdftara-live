@@ -13,7 +13,7 @@
 
 <div align="center">
 
-[![Website](https://img.shields.io/website?url=https%3A%2F%2Fpdftara.devtoolcafe.com%2Fen%2F)](https://pdftara.devtoolcafe.com/en/)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2FPDFTara.devtoolcafe.com%2Fen%2F)](https://PDFTara.devtoolcafe.com/en/)
 ![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js)
 ![React](https://img.shields.io/badge/React-19-blue?style=flat-square&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript)
@@ -211,8 +211,8 @@ To run this project locally, follow these steps:
 
 1.  **Clone the repository**
     ```bash
-    git clone https://github.com/PDFTaraTool/pdftara.git
-    cd pdftara
+    git clone https://github.com/PDFTaraTool/PDFTara.git
+    cd PDFTara
     ```
 
 2.  **Install dependencies**
@@ -246,10 +246,10 @@ The easiest way to run PDFTara is using our pre-built image from GitHub Containe
 
 ```bash
 # Pull the latest image
-docker pull ghcr.io/pdftaratool/pdftara:latest
+docker pull ghcr.io/PDFTaratool/PDFTara:latest
 
 # Run the container
-docker run -d -p 8080:80 --name pdftara ghcr.io/pdftaratool/pdftara:latest
+docker run -d -p 8080:80 --name PDFTara ghcr.io/PDFTaratool/PDFTara:latest
 ```
 
 Open [http://localhost:8080](http://localhost:8080) to access PDFTara.
@@ -269,8 +269,8 @@ If you want to build from source or need to modify the code:
 
 ```bash
 # Clone the repository
-git clone https://github.com/PDFTaraTool/pdftara.git
-cd pdftara
+git clone https://github.com/PDFTaraTool/PDFTara.git
+cd PDFTara
 
 # Development mode (with hot reload)
 docker compose --profile dev up
@@ -290,23 +290,23 @@ docker compose down
 
 #### 🌐 Subpath Deployment (basePath Support)
 
-PDFTara supports deployment under a subpath (e.g., `https://your-domain.com/pdftara/`). To enable this, you must specify the base path during the build process.
+PDFTara supports deployment under a subpath (e.g., `https://your-domain.com/PDFTara/`). To enable this, you must specify the base path during the build process.
 
 **Using Docker Build:**
 ```bash
-docker build --build-arg BASE_PATH=/pdftara -t pdftara .
+docker build --build-arg BASE_PATH=/PDFTara -t PDFTara .
 ```
 
 **Using Docker Compose:**
 ```yaml
 services:
-  pdftara:
+  PDFTara:
     build:
       context: .
       args:
-        - BASE_PATH=/pdftara
+        - BASE_PATH=/PDFTara
     environment:
-      - BASE_PATH=/pdftara
+      - BASE_PATH=/PDFTara
 ```
 
 *Note: Since the app is statically exported, the `BASE_PATH` must be provided during the build stage.*

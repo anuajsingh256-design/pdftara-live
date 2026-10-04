@@ -42,13 +42,13 @@ async function init() {
   // Group 1: Load independent packages in parallel (no inter-dependencies)
   self.postMessage({ type: 'status', message: 'Loading core packages...' });
   await Promise.all([
-    pyodide.loadPackage(basePath + 'numpy-2.2.5-cp313-cp313-pyodide_2025_0_wasm32.whl'),
+    pyodide.loadPackage(basePath + 'numpy-2.2.5-cp313-cp313-pyodide_2026_0_wasm32.whl'),
     pyodide.loadPackage(basePath + 'typing_extensions-4.12.2-py3-none-any.whl'),
     pyodide.loadPackage(basePath + 'packaging-24.1-py3-none-any.whl').catch(e =>
       console.warn("Failed to load packaging, fonttools might fail:", e)
     ),
-    pyodide.loadPackage(basePath + 'lxml-5.4.0-cp313-cp313-pyodide_2025_0_wasm32.whl'),
-    pyodide.loadPackage(basePath + 'pymupdf-1.26.3-cp313-none-pyodide_2025_0_wasm32.whl'),
+    pyodide.loadPackage(basePath + 'lxml-5.4.0-cp313-cp313-pyodide_2026_0_wasm32.whl'),
+    pyodide.loadPackage(basePath + 'pymupdf-1.26.3-cp313-none-pyodide_2026_0_wasm32.whl'),
   ]);
 
   // Group 2: Load packages that depend on Group 1, in parallel
@@ -56,7 +56,7 @@ async function init() {
   await Promise.all([
     pyodide.loadPackage(basePath + 'fonttools-4.56.0-py3-none-any.whl'),
     pyodide.loadPackage(basePath + 'python_docx-1.2.0-py3-none-any.whl'),
-    pyodide.loadPackage(basePath + 'opencv_python-4.11.0.86-cp313-cp313-pyodide_2025_0_wasm32.whl'),
+    pyodide.loadPackage(basePath + 'opencv_python-4.11.0.86-cp313-cp313-pyodide_2026_0_wasm32.whl'),
   ]);
 
   // Group 3: pdf2docx depends on all above

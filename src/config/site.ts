@@ -1,14 +1,14 @@
 /**
  * Site configuration
- * Updated for PDFTara.com
  */
 export const siteConfig = {
   name: 'PDFTara',
   description: 'Professional PDF Tools - Free, Private & Browser-Based. Merge, split, compress, convert, and edit PDF files online without uploading to servers.',
-  url: 'https://www.pdftara.com',
+  url: 'https://PDFTara.devtoolcafe.com',
   ogImage: '/images/og-image.png',
   links: {
-    // Saare external links hata diye hain
+    github: 'https://github.com/PDFTaraTool/PDFTara',
+    twitter: 'https://twitter.com/PDFTara',
   },
   creator: 'PDFTara Team',
   keywords: [
@@ -27,6 +27,7 @@ export const siteConfig = {
   seo: {
     titleTemplate: '%s | PDFTara',
     defaultTitle: 'PDFTara - Professional PDF Tools',
+    twitterHandle: '@PDFTara',
     locale: 'en_US',
   },
 };
@@ -43,7 +44,6 @@ export const navConfig = {
   ],
   footerNav: [
     { title: 'Privacy', href: '/privacy' },
-    { title: 'Terms', href: '/terms' },
     { title: 'Contact', href: '/contact' },
   ],
 };

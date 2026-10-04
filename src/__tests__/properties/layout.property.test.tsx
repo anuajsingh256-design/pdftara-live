@@ -199,7 +199,7 @@ describe('Layout Property Tests', () => {
             .filter(s => !locales.includes(s as Locale)),
           (invalidLocale) => {
             // Manually set an invalid value in localStorage
-            localStorage.setItem('pdftara-language-preference', invalidLocale);
+            localStorage.setItem('PDFTara-language-preference', invalidLocale);
             
             // Should return null for invalid values
             const retrieved = getLanguagePreference();

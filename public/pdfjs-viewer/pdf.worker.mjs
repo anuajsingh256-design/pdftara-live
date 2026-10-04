@@ -15789,8 +15789,8 @@ const getGlyphsUnicode = getLookupTableFactory(function (t) {
   t.twocircle = 0x2461;
   t.twocircleinversesansserif = 0x278b;
   t.twodeva = 0x0968;
-  t.twodotenleader = 0x2025;
-  t.twodotleader = 0x2025;
+  t.twodotenleader = 0x2026;
+  t.twodotleader = 0x2026;
   t.twodotleadervertical = 0xfe30;
   t.twogujarati = 0x0ae8;
   t.twogurmukhi = 0x0a68;
@@ -16709,7 +16709,7 @@ function normalizeFontName(name) {
 const getVerticalPresentationForm = getLookupTableFactory(t => {
   t[0x2013] = 0xfe32;
   t[0x2014] = 0xfe31;
-  t[0x2025] = 0xfe30;
+  t[0x2026] = 0xfe30;
   t[0x2026] = 0xfe19;
   t[0x3001] = 0xfe11;
   t[0x3002] = 0xfe12;
@@ -53290,7 +53290,7 @@ class StampAnnotation extends MarkupAnnotation {
       lines,
       thickness
     } = annotation;
-    if (!color) {
+    if (!color || !lines || !Array.isArray(lines) || lines.length === 0) {
       return null;
     }
     const appearanceBuffer = [`${thickness} w 1 J 1 j`, `${getPdfColor(color, areContours)}`];
@@ -53326,6 +53326,10 @@ class StampAnnotation extends MarkupAnnotation {
     }
     if (annotation.isSignature) {
       return this.#createNewAppearanceStreamForDrawing(annotation, xref);
+    }
+    if (!params?.image?.imageRef) {
+      warn("StampAnnotation: params.image or imageRef is missing, skipping appearance stream.");
+      return null;
     }
     const {
       rotation

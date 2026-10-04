@@ -4,6 +4,7 @@ import {
   SUPPORTED_LOCALES,
   DEFAULT_LOCALE,
   LOCALE_CONFIG,
+  localeConfig,
   locales,
   type Locale,
   type NestedMessages,
@@ -41,6 +42,20 @@ describe('i18n Property Tests', () => {
     );
   });
 
+  it('registers Polish metadata and replaces locale prefixes safely', () => {
+    expect(localeConfig.pl).toEqual({
+      name: 'Polish',
+      nativeName: 'Polski',
+      direction: 'ltr',
+      dateFormat: 'DD.MM.YYYY',
+    });
+    expect(getLocalizedPath('/pl/tools/merge-pdf', 'en')).toBe('/en/tools/merge-pdf');
+    expect(getLocalizedPath('/zh-TW/tools/merge-pdf', 'pl')).toBe('/pl/tools/merge-pdf');
+    expect(getLocalizedPath('/pl', 'pl')).toBe('/pl/');
+    expect(getLocalizedPath('/plasma', 'pl')).toBe('/pl/plasma');
+    expect(getLocalizedPath('tools/merge-pdf', 'pl')).toBe('/pl/tools/merge-pdf');
+  });
+
   /**
    * Property: Default locale is always in supported locales
    */
@@ -53,12 +68,17 @@ describe('i18n Property Tests', () => {
   /**
    * Property: All non-Arabic locales have LTR direction
    */
-  it('all locales have LTR direction', () => {
+  it('all locales have correct text direction', () => {
+    const RTL_LOCALES: string[] = ['ar'];
     fc.assert(
       fc.property(
         fc.constantFrom(...SUPPORTED_LOCALES),
         (locale) => {
-          return LOCALE_CONFIG[locale].direction === 'ltr';
+          const config = LOCALE_CONFIG[locale];
+          if (RTL_LOCALES.includes(locale)) {
+            return config.direction === 'rtl';
+          }
+          return config.direction === 'ltr';
         }
       ),
       { numRuns: 100 }

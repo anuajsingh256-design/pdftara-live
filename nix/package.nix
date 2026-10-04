@@ -11,7 +11,7 @@ let
 
   # Phase 1: Fetch npm dependencies (fixed-output derivation)
   npmDeps = stdenv.mkDerivation {
-    pname = "pdftara-npm-deps";
+    pname = "PDFTara-npm-deps";
     version = "0.1.0";
 
     src = lib.cleanSourceWith {
@@ -39,8 +39,8 @@ let
   };
 
   # Phase 2: Build the static site (FOD — allows network for next/font Google Fonts download)
-  pdftara-static = stdenv.mkDerivation {
-    pname = "pdftara-static";
+  PDFTara-static = stdenv.mkDerivation {
+    pname = "PDFTara-static";
     version = "0.1.0";
 
     src = lib.cleanSourceWith {
@@ -102,7 +102,7 @@ let
 
 in
 stdenv.mkDerivation {
-  pname = "pdftara";
+  pname = "PDFTara";
   version = "0.1.0";
 
   dontUnpack = true;
@@ -110,7 +110,7 @@ stdenv.mkDerivation {
   nativeBuildInputs = [ gzip ];
 
   installPhase = let
-    nginxConf = builtins.toFile "pdftara-nginx.conf" ''
+    nginxConf = builtins.toFile "PDFTara-nginx.conf" ''
       daemon off;
       worker_processes 1;
       error_log /dev/stderr;
@@ -146,7 +146,7 @@ stdenv.mkDerivation {
         server {
           listen 3000;
           server_name _;
-          root PDFTARA_ROOT;
+          root PDFTara_ROOT;
           index index.html;
 
           add_header X-Content-Type-Options "nosniff" always;
@@ -196,12 +196,12 @@ stdenv.mkDerivation {
     runHook preInstall
 
     # Install static files
-    mkdir -p $out/share/pdftara
-    cp -r ${pdftara-static}/* $out/share/pdftara/
+    mkdir -p $out/share/PDFTara
+    cp -r ${PDFTara-static}/* $out/share/PDFTara/
 
     # Decompress LibreOffice WASM .gz files
-    if [ -d $out/share/pdftara/libreoffice-wasm ]; then
-      cd $out/share/pdftara/libreoffice-wasm
+    if [ -d $out/share/PDFTara/libreoffice-wasm ]; then
+      cd $out/share/PDFTara/libreoffice-wasm
       for f in *.gz; do
         if [ -f "$f" ]; then
           ${gzip}/bin/gzip -dk "$f" || true
@@ -210,40 +210,40 @@ stdenv.mkDerivation {
     fi
 
     # Install nginx config
-    mkdir -p $out/etc/pdftara
-    sed -e "s|PDFTARA_ROOT|$out/share/pdftara|g" \
+    mkdir -p $out/etc/PDFTara
+    sed -e "s|PDFTara_ROOT|$out/share/PDFTara|g" \
         -e "s|NGINX_MIME_TYPES|${nginx}/conf/mime.types|g" \
-        ${nginxConf} > $out/etc/pdftara/nginx.conf
+        ${nginxConf} > $out/etc/PDFTara/nginx.conf
 
     # Install run script
     mkdir -p $out/bin
-    cat > $out/bin/pdftara <<'WRAPPER'
+    cat > $out/bin/PDFTara <<'WRAPPER'
 #!/bin/sh
-PDFTARA_PORT=''${PDFTARA_PORT:-3000}
-PDFTARA_CONF="@out@/etc/pdftara/nginx.conf"
-RUNTIME_CONF=$(mktemp /tmp/pdftara-nginx.XXXXXX.conf)
+PDFTara_PORT=''${PDFTara_PORT:-3000}
+PDFTara_CONF="@out@/etc/PDFTara/nginx.conf"
+RUNTIME_CONF=$(mktemp /tmp/PDFTara-nginx.XXXXXX.conf)
 
-sed "s|listen 3000|listen $PDFTARA_PORT|g" "$PDFTARA_CONF" > "$RUNTIME_CONF"
+sed "s|listen 3000|listen $PDFTara_PORT|g" "$PDFTara_CONF" > "$RUNTIME_CONF"
 
 trap "rm -f $RUNTIME_CONF" EXIT
 
-echo "PDFTara running at http://localhost:$PDFTARA_PORT"
+echo "PDFTara running at http://localhost:$PDFTara_PORT"
 exec @nginx@/bin/nginx -c "$RUNTIME_CONF"
 WRAPPER
 
-    substituteInPlace $out/bin/pdftara \
+    substituteInPlace $out/bin/PDFTara \
       --replace-fail "@out@" "$out" \
       --replace-fail "@nginx@" "${nginx}"
-    chmod +x $out/bin/pdftara
+    chmod +x $out/bin/PDFTara
 
     runHook postInstall
   '';
 
   meta = with lib; {
     description = "PDFTara - Professional PDF Tools, Free, Private & Browser-Based";
-    homepage = "https://github.com/PDFTaraTool/pdftara";
+    homepage = "https://github.com/PDFTaraTool/PDFTara";
     license = licenses.agpl3Only;
     platforms = [ "x86_64-linux" "aarch64-linux" ];
-    mainProgram = "pdftara";
+    mainProgram = "PDFTara";
   };
 }

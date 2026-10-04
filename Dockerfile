@@ -25,7 +25,11 @@ COPY . .
 # Build the static export
 # Use BuildKit cache mount for Next.js cache to speed up rebuilds
 ARG BASE_PATH=""
+ARG APP_VERSION=""
+ARG DISABLE_UPDATE_CHECK=""
 ENV BASE_PATH=$BASE_PATH
+ENV APP_VERSION=$APP_VERSION
+ENV DISABLE_UPDATE_CHECK=$DISABLE_UPDATE_CHECK
 ENV DOCKER_BUILD=true
 RUN --mount=type=cache,target=/root/.npm \
     --mount=type=cache,target=/app/.next/cache \
@@ -37,7 +41,7 @@ RUN --mount=type=cache,target=/root/.npm \
 FROM nginx:1.25-alpine AS production
 
 # Add labels for GitHub Container Registry
-LABEL org.opencontainers.image.source="https://github.com/PDFTaraTool/pdftara"
+LABEL org.opencontainers.image.source="https://github.com/PDFTaraTool/PDFTara"
 LABEL org.opencontainers.image.description="PDFTara - Professional PDF Tools, Free, Private & Browser-Based"
 LABEL org.opencontainers.image.licenses="AGPL-3.0"
 LABEL org.opencontainers.image.title="PDFTara"
@@ -48,7 +52,7 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY security-headers.conf /etc/nginx/security-headers.conf
 
 # Copy the static export from builder stage
-COPY --from=builder /app/out /website/pdftara
+COPY --from=builder /app/out /website/PDFTara
 
 # Expose port 80
 EXPOSE 80

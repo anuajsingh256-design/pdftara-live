@@ -1,16 +1,16 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.services.pdftara;
+  cfg = config.services.PDFTara;
 in
 {
-  options.services.pdftara = {
+  options.services.PDFTara = {
     enable = lib.mkEnableOption "PDFTara - Professional PDF Tools";
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = pkgs.pdftara;
-      defaultText = lib.literalExpression "pkgs.pdftara";
+      default = pkgs.PDFTara;
+      defaultText = lib.literalExpression "pkgs.PDFTara";
       description = "The PDFTara package to use.";
     };
 
@@ -24,21 +24,21 @@ in
   config = lib.mkIf cfg.enable {
     nixpkgs.overlays = [
       (final: prev: {
-        pdftara = final.callPackage ./package.nix { };
+        PDFTara = final.callPackage ./package.nix { };
       })
     ];
 
-    systemd.user.services.pdftara = {
+    systemd.user.services.PDFTara = {
       Unit = {
         Description = "PDFTara PDF Tools";
         After = [ "network.target" ];
       };
 
       Service = {
-        ExecStart = "${cfg.package}/bin/pdftara";
+        ExecStart = "${cfg.package}/bin/PDFTara";
         Restart = "on-failure";
         Environment = [
-          "PDFTARA_PORT=${toString cfg.port}"
+          "PDFTara_PORT=${toString cfg.port}"
         ];
       };
 

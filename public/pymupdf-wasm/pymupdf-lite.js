@@ -1212,12 +1212,12 @@ async function convertPdfToRgb(pdfData) {
 var ASSETS = {
   pyodide: "pyodide.js",
   wheels: [
-    "pymupdf-1.26.3-cp313-none-pyodide_2025_0_wasm32.whl",
+    "pymupdf-1.26.3-cp313-none-pyodide_2026_0_wasm32.whl",
     "pymupdf4llm-0.0.27-py3-none-any.whl",
     "fonttools-4.56.0-py3-none-any.whl",
-    "lxml-5.4.0-cp313-cp313-pyodide_2025_0_wasm32.whl",
-    "numpy-2.2.5-cp313-cp313-pyodide_2025_0_wasm32.whl",
-    "opencv_python-4.11.0.86-cp313-cp313-pyodide_2025_0_wasm32.whl",
+    "lxml-5.4.0-cp313-cp313-pyodide_2026_0_wasm32.whl",
+    "numpy-2.2.5-cp313-cp313-pyodide_2026_0_wasm32.whl",
+    "opencv_python-4.11.0.86-cp313-cp313-pyodide_2026_0_wasm32.whl",
     "pdf2docx-0.5.8-py3-none-any.whl",
     "python_docx-1.2.0-py3-none-any.whl",
     "typing_extensions-4.12.2-py3-none-any.whl"
