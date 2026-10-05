@@ -1,26 +1,39 @@
+import type { Metadata } from 'next';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
-import { type Locale } from '@/lib/i18n/config';
+import { locales, type Locale } from '@/lib/i18n/config';
 
-export const metadata = {
-  title: "Cookie Policy -PDFTara",
-  description: "Detailed information about howPDFTara uses cookies and third-party advertising.",
-};
+type Props = { params: Promise<{ locale?: string }> };
 
-// Next.js 15: Params ab Promise hote hain
-export default async function CookiesPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  const currentLocale = locale as Locale;
+function resolveLocale(locale?: string): Locale {
+  return locales.includes(locale as Locale) ? (locale as Locale) : 'en';
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = (await params) ?? {};
+  const currentLocale = resolveLocale(locale);
+
+  return {
+    title: 'Cookie Policy - PDFTara',
+    description:
+      'Detailed information about how PDFTara uses cookies and third-party advertising.',
+    alternates: {
+      canonical: `https://www.pdftara.com/${currentLocale}/cookies/`,
+    },
+  };
+}
+
+export default async function CookiesPage({ params }: Props) {
+  const { locale } = (await params) ?? {};
+  const currentLocale = resolveLocale(locale);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#fafafa]">
-      
       {/* --- HEADER --- */}
       <Header locale={currentLocale} />
 
       <main className="flex-1 py-16 md:py-24 px-6 text-slate-800 font-sans selection:bg-blue-100">
         <div className="max-w-4xl mx-auto bg-white p-10 md:p-20 rounded-[3rem] border border-slate-100 shadow-xl shadow-slate-200/50">
-          
           {/* --- PAGE HEADER --- */}
           <header className="mb-16 border-b border-slate-100 pb-10">
             <div className="inline-block px-4 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-700 font-bold text-[10px] uppercase tracking-[0.2em] mb-6">
@@ -33,12 +46,11 @@ export default async function CookiesPage({ params }: { params: Promise<{ locale
               Last Updated: <span className="text-slate-900 font-bold">January 18, 2026</span>
             </p>
           </header>
-          
+
           {/* --- CONTENT SECTION --- */}
           <div className="text-lg leading-relaxed text-slate-600">
-            
             <p className="mb-10 text-xl font-medium text-slate-700">
-              AtPDFTara, transparency is key. This policy explains what cookies are, how we use them, and how third-party partners like Google may use them on our service.
+              At PDFTara, transparency is key. This policy explains what cookies are, how we use them, and how third-party partners like Google may use them on our service.
             </p>
 
             {/* 1. What are Cookies */}
@@ -64,7 +76,7 @@ export default async function CookiesPage({ params }: { params: Promise<{ locale
               </ul>
             </div>
 
-            {/* 3. ADSENSE SPECIFIC SECTION (Highlighted Box) */}
+            {/* 3. ADSENSE SPECIFIC SECTION */}
             <div className="mb-12 bg-blue-50/50 p-8 rounded-[2rem] border border-blue-100">
               <h2 className="text-2xl md:text-3xl font-[900] text-[#0f172a] mb-4 flex items-center gap-3">
                 <span className="text-blue-600 opacity-30">03.</span> Advertising & Google AdSense
@@ -73,8 +85,19 @@ export default async function CookiesPage({ params }: { params: Promise<{ locale
                 We use <strong>Google AdSense</strong> to display advertisements on our website. Google uses cookies to serve ads based on your prior visits to our website or other websites on the internet.
               </p>
               <ul className="list-disc pl-6 space-y-2 text-slate-600 text-base marker:text-blue-500">
-                <li>Google uses advertising cookies to enable it and its partners to serve ads to you based on your visit toPDFTara and/or other sites on the Internet.</li>
-                <li>You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="nofollow noreferrer" className="font-bold text-blue-600 underline decoration-2 underline-offset-2 hover:text-blue-800">Google Ads Settings</a>.</li>
+                <li>Google uses advertising cookies to enable it and its partners to serve ads to you based on your visit to PDFTara and/or other sites on the Internet.</li>
+                <li>
+                  You may opt out of personalized advertising by visiting{' '}
+                  <a
+                    href="https://www.google.com/settings/ads"
+                    target="_blank"
+                    rel="nofollow noreferrer"
+                    className="font-bold text-blue-600 underline decoration-2 underline-offset-2 hover:text-blue-800"
+                  >
+                    Google Ads Settings
+                  </a>
+                  .
+                </li>
               </ul>
             </div>
 
@@ -84,7 +107,7 @@ export default async function CookiesPage({ params }: { params: Promise<{ locale
                 <span className="text-blue-600 opacity-30">04.</span> Third-Party Cookies
               </h2>
               <p>
-                In addition to our own cookies, we may also use various third-parties cookies to report usage statistics of the Service and deliver advertisements on and through the Service. These cookies are governed by the respective privacy policies of these third-party services.
+                In addition to our own cookies, we may also use various third-party cookies to report usage statistics of the Service and deliver advertisements on and through the Service. These cookies are governed by the respective privacy policies of these third-party services.
               </p>
             </div>
 
@@ -111,15 +134,13 @@ export default async function CookiesPage({ params }: { params: Promise<{ locale
             {/* 7. Changes */}
             <div className="mb-0 border-t border-slate-100 pt-10">
               <h2 className="text-2xl md:text-3xl font-[900] text-[#0f172a] mb-4 flex items-center gap-3">
-                <span className="text-blue-600 opacity-30">07.</span> Changes to This Policy
+                <span className="text-blue-600 opacity-30">06.</span> Changes to This Policy
               </h2>
               <p>
                 We may update this Cookie Policy from time to time in order to reflect, for example, changes to the cookies we use or for other operational, legal, or regulatory reasons. Please therefore re-visit this Cookie Policy regularly to stay informed about our use of cookies and related technologies.
               </p>
             </div>
-
           </div>
-
         </div>
       </main>
 
