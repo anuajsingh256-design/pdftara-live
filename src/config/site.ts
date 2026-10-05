@@ -3,14 +3,18 @@
  */
 export const siteConfig = {
   name: 'PDFTara',
-  description: 'Professional PDF Tools - Free, Private & Browser-Based. Merge, split, compress, convert, and edit PDF files online without uploading to servers.',
-  url: 'https://PDFTara.devtoolcafe.com',
-  ogImage: '/images/og-image.png',
-  links: {
-    github: 'https://github.com/PDFTaraTool/PDFTara',
-    twitter: 'https://twitter.com/PDFTara',
-  },
+
+  description:
+    'Professional PDF Tools - Free, Private & Browser-Based. Merge, split, compress, convert, and edit PDF files online without uploading to servers.',
+
+  url: 'https://www.pdftara.com',
+
+  ogImage: 'https://www.pdftara.com/images/og-image.png',
+
+  links: {},
+
   creator: 'PDFTara Team',
+
   keywords: [
     'PDF tools',
     'PDF editor',
@@ -23,11 +27,13 @@ export const siteConfig = {
     'browser-based PDF',
     'private PDF processing',
   ],
-  // SEO-related settings
+
+  /**
+   * SEO-related settings
+   */
   seo: {
     titleTemplate: '%s | PDFTara',
     defaultTitle: 'PDFTara - Professional PDF Tools',
-    twitterHandle: '@PDFTara',
     locale: 'en_US',
   },
 };
@@ -37,13 +43,32 @@ export const siteConfig = {
  */
 export const navConfig = {
   mainNav: [
-    { title: 'Home', href: '/' },
-    { title: 'Tools', href: '/tools' },
-    { title: 'About', href: '/about' },
-    { title: 'FAQ', href: '/faq' },
+    {
+      title: 'Home',
+      href: '/',
+    },
+    {
+      title: 'Tools',
+      href: '/tools',
+    },
+    {
+      title: 'About',
+      href: '/about',
+    },
+    {
+      title: 'FAQ',
+      href: '/faq',
+    },
   ],
+
   footerNav: [
-    { title: 'Privacy', href: '/privacy' },
-    { title: 'Contact', href: '/contact' },
+    {
+      title: 'Privacy',
+      href: '/privacy',
+    },
+    {
+      title: 'Contact',
+      href: '/contact',
+    },
   ],
 };
